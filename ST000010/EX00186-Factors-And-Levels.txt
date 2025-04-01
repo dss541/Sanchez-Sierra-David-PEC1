@@ -1,0 +1,15 @@
+TGF	TGF-beta treatment
+	TGF	With TGF-beta addition
+	NO_TGF	Without TGF-beta addition
+TIME	Time point
+	00h	0 time
+	02h	2 hours
+	12h	12 hours
+	24h	24 hours
+	72h	72 hours
+FCS	10% Fetal Calf Serum addition
+	FCS	Grown with 10% FCS
+	NO_FCS	Grown without FCS
+REFED	Cells re-fed at 48h
+	REFED_48	Re-fed after 48 h 
+	NO_REFED	Not re-fed

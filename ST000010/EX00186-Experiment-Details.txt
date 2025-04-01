@@ -1,0 +1,7 @@
+Experiment ID	EX00186
+Experiment Name	Lung Cancer Cells 4
+Description	Metabolomics of EMT
+Project	EMT in lung cancer
+Laboratory	Keshamouni Lab (MCTP)
+Contact person	Venkat Keshamouni (vkeshamo@umich.edu)
+Notes	

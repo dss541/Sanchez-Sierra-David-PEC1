@@ -1,0 +1,40 @@
+ID	Name	Description	Group	Organism	Line	Fraction	Modif.	User type	Type	Notes	TGF	TIME	FCS	REFED
+S00010449	0A	Control 0 h (-TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	00h	NO_FCS	NO_REFED
+S00010450	0B	Control 0 h (-TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	00h	NO_FCS	NO_REFED
+S00010451	0C	Control 0 h (-TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	00h	NO_FCS	NO_REFED
+S00010458	12A	12 h (-TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	12h	NO_FCS	NO_REFED
+S00010459	12B	12 h (-TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	12h	NO_FCS	NO_REFED
+S00010460	12C	12 h (-TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	12h	NO_FCS	NO_REFED
+S00010461	12D	12 h (+TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	12h	NO_FCS	NO_REFED
+S00010462	12E	12 h (+TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	12h	NO_FCS	NO_REFED
+S00010463	12F	12 h (+TGFb) (1.5X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	12h	NO_FCS	NO_REFED
+S00010464	24A	24 h (-TGFb) (2.23X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	24h	NO_FCS	NO_REFED
+S00010465	24B	24 h (-TGFb) (2.23X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	24h	NO_FCS	NO_REFED
+S00010466	24C	24 h (-TGFb) (2.23X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	24h	NO_FCS	NO_REFED
+S00010467	24D	24 h (+TGFb) (1.65X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	24h	NO_FCS	NO_REFED
+S00010468	24E	24 h (+TGFb) (1.65X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	24h	NO_FCS	NO_REFED
+S00010469	24F	24 h (+TGFb) (1.65X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	24h	NO_FCS	NO_REFED
+S00010452	2A	2 h (-TGFb) (1.24X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	02h	NO_FCS	NO_REFED
+S00010453	2B	2 h (-TGFb) (1.24X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	02h	NO_FCS	NO_REFED
+S00010454	2C	2 h (-TGFb) (1.24X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	02h	NO_FCS	NO_REFED
+S00010455	2D	2 h (+TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	02h	NO_FCS	NO_REFED
+S00010456	2E	2 h (+TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	02h	NO_FCS	NO_REFED
+S00010457	2F	2 h (+TGFb) (1.26X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	02h	NO_FCS	NO_REFED
+S00010470	72A	72 h (-TGFb) (5.1X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	NO_REFED
+S00010476	72ARF	72 h (-TGFb) refed at 48 h (4.94X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	REFED_48
+S00010471	72B	72 h (-TGFb) (5.1X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	NO_REFED
+S00010477	72BRF	72 h (-TGFb) refed at 48 h (4.94X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	REFED_48
+S00010472	72C	72 h (-TGFb) (5.1X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	NO_REFED
+S00010478	72CRF	72 h (-TGFb) refed at 48 h (4.94X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	NO_FCS	REFED_48
+S00010473	72D	72 h (+TGFb) (3.77X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	NO_REFED
+S00010479	72DRF	72 h (+TGFb) refed at 48 h (3.61X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	REFED_48
+S00010474	72E	72 h (+TGFb) (3.77X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	NO_REFED
+S00010480	72ERF	72 h (+TGFb) refed at 48 h (3.61X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	REFED_48
+S00010475	72F	72 h (+TGFb) (3.77X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	NO_REFED
+S00010481	72FRF	72 h (+TGFb) refed at 48 h (3.61X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	NO_FCS	REFED_48
+S00010482	72SA	72 h (-TGFb) Expt in 10%FCS (7.84X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	FCS	NO_REFED
+S00010483	72SB	72 h (-TGFb) Expt in 10%FCS (7.84X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	FCS	NO_REFED
+S00010484	72SC	72 h (-TGFb) Expt in 10%FCS (7.84X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	NO_TGF	72h	FCS	NO_REFED
+S00010485	72SD	72 h (+TGFb) Expt in 10%FCS (4.88X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	FCS	NO_REFED
+S00010486	72SE	72 h (+TGFb) Expt in 10%FCS (4.88X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	FCS	NO_REFED
+S00010487	72SF	72 h (+TGFb) Expt in 10%FCS (4.88X10^6)	EMT Metabolomics	human				Cell Line	Cell Line	S	TGF	72h	FCS	NO_REFED
