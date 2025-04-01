@@ -1,0 +1,858 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Sanchez-Sierra-David-PEC1},
+  pdfauthor={David Sánchez Sierra},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Sanchez-Sierra-David-PEC1}
+\author{David Sánchez Sierra}
+\date{2025-04-01}
+
+\begin{document}
+\maketitle
+
+\section{Análisis de datos ómicos (M0-157). Prueba de evaluación
+continua.}\label{anuxe1lisis-de-datos-uxf3micos-m0-157.-prueba-de-evaluaciuxf3n-continua.}
+
+\subsection{Tabla de contenidos}\label{tabla-de-contenidos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \hyperref[resumen]{Resumen}\\
+\item
+  \hyperref[objetivos]{Objetivos}\\
+\item
+  \hyperref[enfoque-y-muxe9todo-seguido]{Enfoque y método seguido} 3.1.
+  \hyperref[selecciuxf3n-y-descarga-del-dataset]{Selección y descarga
+  del dataset}\\
+  3.2. \hyperref[creaciuxf3n-del-objeto-summarizedexperiment]{Creación
+  del objeto SummarizedExperiment}\\
+\item
+  \hyperref[resultados]{Resultados}\\
+  4.1.
+  \hyperref[diferencias-entre-summarizedexperiment-y-expressionset]{Diferencias
+  entre SummarizedExperiment y ExpressionSet}\\
+  4.2. \hyperref[anuxe1lisis-exploratorio]{Análisis exploratorio}\\
+  4.3. \hyperref[anova]{Análisis de metabolitos asociados a la pérdida
+  muscular}\\
+\item
+  \hyperref[discusiuxf3n]{Discusión}\\
+\item
+  \hyperref[conclusiones]{Conclusiones}\\
+\item
+  \hyperref[bibliografuxeda]{Bibliografía}
+\end{enumerate}
+
+\subsection{1. Resumen}\label{resumen}
+
+En esta actividad, se ha estudiado la relación entre metabolitos
+sanguíneos y la condición de caquexia en pacientes con cáncer mediante
+el uso de la clase SummarizedExperiment (SE). Se utilizó un conjunto de
+datos que incluyó 63 metabolitos y 77 muestras de pacientes, los cuales
+fueron analizados para identificar posibles biomarcadores relacionados
+con la pérdida muscular. La creación del objeto (SE) se realizó con el
+objetivo de aprender a organizar y estructurar unos datos ómicos de
+forma adecuada para su correcto procesamiento. El análisis de dicha
+clase verificó que su estructura fuera correcta, de forma que los
+metabolitos quedaran almacenados en matrices de expresión y los
+metadatos de las muestras (condición de caquexia) integrados en un solo
+objeto. A través de un análisis de varianza (ANOVA), se identificaron 40
+metabolitos significativamente asociados con la caquexia, de los cuales
+7 mostraron una relación altamente significativa (p \textless{} 0.001).
+Entre ellos, se destacaron metabolitos como creatinina, dimethylamina,
+leucina, N.N.Dimethylglycina, pyroglutamata, quinolinata y valina,
+previamente asociados con la caquexia en estudios previos. Estos
+hallazgos sugieren que estos metabolitos pueden servir como
+biomarcadores clave en el diagnóstico y seguimiento de la caquexia, lo
+que subraya la importancia de la metabolómica en la investigación del
+cáncer y sus complicaciones asociadas.
+
+\subsection{2. Objetivos}\label{objetivos}
+
+El objetivo principal de este estudio fue la creación, exploración y
+análisis de datos utilizando el objeto SummarizedExperiment (SE), con el
+fin de investigar las diferencias en los metabolitos entre pacientes con
+y sin caquexia. Este enfoque se orientó hacia la organización y análisis
+de datos ómicos, en particular datos de metabolómica, asociados con los
+metadatos clínicos de los pacientes. Los objetivos específicos fueron:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Crear el objeto SummarizedExperiment: Organizar los datos de expresión
+  de metabolitos (63 metabolitos) y los metadatos asociados a las
+  muestras de 77 pacientes en un solo objeto para facilitar su manejo y
+  análisis.
+\item
+  Explorar la estructura del objeto SummarizedExperiment: Inspeccionar
+  las dimensiones y los componentes clave del SE, como las matrices de
+  expresión de metabolitos (almacenadas en el componente assays) y los
+  metadatos (almacenados en colData), con el fin de verificar la
+  correcta organización de los datos.
+\item
+  Realizar un análisis estadístico (ANOVA): Evaluar la relación entre
+  los metabolitos y la condición de pérdida muscular en los pacientes
+  (caquexia) mediante un análisis de varianza (ANOVA), con el fin de
+  identificar metabolitos potencialmente significativos asociados con
+  esta condición.
+\end{enumerate}
+
+\subsection{3. Enfoque y método
+seguido}\label{enfoque-y-muxe9todo-seguido}
+
+\subsubsection{3.1. Selección y descarga del
+dataset}\label{selecciuxf3n-y-descarga-del-dataset}
+
+Para esta actividad, se seleccionó el dataset ``caquexia'' obtenido del
+repositorio de github adjunto al encunciado. Este conjunto de datos ha
+sido ampliamente utilizado en diversos tutoriales de MetaboAnalyst, lo
+que permitió expandir el análisis realizado al disponer de información
+sobre numerosos enfoques y metodologías establecidas.
+
+Las técnicas metabolómicas se han utilizado para estudiar los cambios
+metabólicos, incluyendo las variaciones en las concentraciones de
+metabolitos y las vías metabólicas alteradas en la progresión de la
+caquexia relacionada con el cáncer (CC), así como para ampliar la
+comprensión fundamental de la pérdida muscular(Cui et al. 2022). En este
+dataset, se incluyen datos sobre 77 pacientes oncológicos, clasificados
+en dos grupos según su estado de pérdida muscular: controles y
+caquéxicos.
+
+La descarga de los datos se realizó utilizando R, empleando la función
+read.csv() para cargar el archivo en formato tabular:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"human\_cachexia.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{str}\NormalTok{(dataset, }\AttributeTok{max.level =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    77 obs. of  65 variables:
+\end{verbatim}
+
+Como puede observarse, el dataset contiene información sobre 65
+variables, incluyendo las concentraciones de diversos metabolitos en las
+muestras de orina asociadas con los dos grupos de pacientes. Además, el
+conjunto de datos incluye el identificador de cada paciente y los
+metadatos relacionados con las características de estos, en este caso el
+tipo categórico (control o caquéxicos).
+
+\subsubsection{3.2. Creación del objeto
+SummarizedExperiment}\label{creaciuxf3n-del-objeto-summarizedexperiment}
+
+Tras cargar los datos, se creó un objeto de clase SummarizedExperiment
+proporcionada por el paquete Bioconductor, el cual permite estructurar
+los datos y metadatos asociados a cada observación, facilitando su
+manipulación y análisis. Primero se asignaron los valores de Patient.ID
+como nombres de fila para el dataset, asegurando que cada muestra
+tuviera una identificación única en la matriz. Tras ello, se eliminó la
+columna Patient.ID del conjunto de datos, ya que solo se necesitaba para
+asignar los nombres de las filas, y no debía formar parte de los datos
+de expresión.
+
+A continuación, se extrajeron las mediciones de los metabolitos del
+dataset, excluyendo la columna Muscle.loss, que corresponde a la
+información de los metadatos y no a las concentraciones de los
+metabolitos. Las concentraciones de metabolitos se almacenaron en una
+matriz de expresión (expr\_matrix), la cual fue transpuesta para que las
+muestras fueran representadas en las columnas, lo que facilita la
+asociación con los metadatos. En el siguiente paso, se creó el DataFrame
+para los metadatos que debía contener la columna Muscle.loss
+(información sobre el estado de caquexia de las muestras).
+
+El código que implementa este procedimiento es el siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar paquetes necesarios}
+\FunctionTok{library}\NormalTok{(S4Vectors)}
+\FunctionTok{library}\NormalTok{(SummarizedExperiment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Asignar ID como nombre de fila}
+\FunctionTok{rownames}\NormalTok{(dataset) }\OtherTok{\textless{}{-}}\NormalTok{ dataset}\SpecialCharTok{$}\NormalTok{Patient.ID  }
+\NormalTok{dataset }\OtherTok{\textless{}{-}}\NormalTok{ dataset[, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{] }\CommentTok{\# Eliminar la columna \textquotesingle{}Patient ID\textquotesingle{}}
+
+\CommentTok{\# Asegurarse de que \textquotesingle{}Muscle.loss\textquotesingle{} es excluida correctamente}
+\NormalTok{expr\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(dataset[, }\SpecialCharTok{{-}}\FunctionTok{which}\NormalTok{(}\FunctionTok{names}\NormalTok{(dataset) }\SpecialCharTok{==} \StringTok{"Muscle.loss"}\NormalTok{)])}
+
+\CommentTok{\# Transponer la matriz para que las muestras sean columnas}
+\NormalTok{expr\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(expr\_matrix)}
+
+\CommentTok{\# Crear el dataframe de metadatos (solo \textquotesingle{}Muscle.loss\textquotesingle{})}
+\NormalTok{metadata\_df }\OtherTok{\textless{}{-}} \FunctionTok{DataFrame}\NormalTok{(}\AttributeTok{Muscle.loss =}\NormalTok{ dataset}\SpecialCharTok{$}\NormalTok{Muscle.loss)}
+\FunctionTok{rownames}\NormalTok{(metadata\_df) }\OtherTok{\textless{}{-}} \FunctionTok{rownames}\NormalTok{(dataset)  }\CommentTok{\# Asegurar nombres de fila en metadatos}
+
+\CommentTok{\# Crear el objeto SummarizedExperiment}
+\NormalTok{se\_object }\OtherTok{\textless{}{-}} \FunctionTok{SummarizedExperiment}\NormalTok{(}
+  \AttributeTok{assays =} \FunctionTok{list}\NormalTok{(}\AttributeTok{counts =}\NormalTok{ expr\_matrix),}
+  \AttributeTok{colData =}\NormalTok{ metadata\_df}
+\NormalTok{)}
+
+\CommentTok{\# Verificar el objeto creado}
+\NormalTok{se\_object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class: SummarizedExperiment 
+## dim: 63 77 
+## metadata(0):
+## assays(1): counts
+## rownames(63): X1.6.Anhydro.beta.D.glucose X1.Methylnicotinamide ...
+##   pi.Methylhistidine tau.Methylhistidine
+## rowData names(0):
+## colnames(77): PIF_178 PIF_087 ... NETL_003_V1 NETL_003_V2
+## colData names(1): Muscle.loss
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Guardar el objeto SummarizedExperiment en un archivo .Rda}
+\FunctionTok{save}\NormalTok{(se\_object, }\AttributeTok{file =} \StringTok{"SE\_object.Rda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{4. Resultados}\label{resultados}
+
+\subsubsection{4.1. Diferencias entre SummarizedExperiment y
+ExpressionSet}\label{diferencias-entre-summarizedexperiment-y-expressionset}
+
+La clase SummarizedExperiment es una extensión moderna de ExpressionSet,
+con varias mejoras en cuanto a la estructura de almacenamiento y la
+interoperabilidad con otras herramientas de Bioconductor. Una de las
+diferencias más notables es que SummarizedExperiment utiliza el
+componente assays para manejar las matrices de datos en lugar de la
+función exprs() que se usaba en ExpressionSet. Además,
+SummarizedExperiment también incorpora colData y rowData para el
+almacenamiento de los metadatos relativos a las muestras y las
+características, respectivamente, sustituyendo a las funciones pData() y
+fData() que se encontraban en ExpressionSet. Esta modificación
+simplifica y vuelve más adaptable la gestión de dichos metadatos. Un
+beneficio adicional significativo de SummarizedExperiment reside en su
+mejorada interoperabilidad con análisis de datos multi-ómicos, lo que la
+establece como una herramienta más idónea para la realización de
+estudios que combinan distintos tipos de datos ómicos, tales como datos
+genómicos, transcriptómicos y proteómicos ({``Convert {Seurat Object} to
+{Summarised Experiment} or {ExpressionSet}''} n.d.).
+
+Estas diferencias hacen que SummarizedExperiment resulte una opción más
+adecuada para manejar y analizar datos provenientes de diversas fuentes
+dentro de un mismo entorno de trabajo, otorgándole una mayor
+flexibilidad en comparación con ExpressionSet.
+
+\subsubsection{4.2. Análisis
+exploratorio}\label{anuxe1lisis-exploratorio}
+
+En esta sección se muestra el análisis inicial del objeto
+SummarizedExperiment (SE), que contiene los datos de expresión de
+metabolitos y los metadatos asociados a las muestras:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(se\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 63 77
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{assay}\NormalTok{(se\_object)[ , }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             PIF_178 PIF_087 PIF_090 NETL_005_V1 PIF_115 PIF_110
+## X1.6.Anhydro.beta.D.glucose   40.85   62.18  270.43      154.47   22.20  212.72
+## X1.Methylnicotinamide         65.37  340.36   64.72       52.98   73.70   31.82
+## X2.Aminobutyrate              18.73   24.29   12.18      172.43   15.64   18.36
+## X2.Hydroxyisobutyrate         26.05   41.68   65.37       74.44   83.93   80.64
+## X2.Oxoglutarate               71.52   67.36   23.81     1199.91   33.12   47.94
+## X3.Aminoisobutyrate         1480.30  116.75   14.30      555.57   29.67   17.46
+##                             NETL_019_V1 NETCR_014_V1 NETCR_014_V2 PIF_154
+## X1.6.Anhydro.beta.D.glucose      151.41        31.50        51.42  117.92
+## X1.Methylnicotinamide             36.60         6.82        30.27   52.46
+## X2.Aminobutyrate                   8.67         4.18         7.54   19.49
+## X2.Hydroxyisobutyrate             42.52        12.94        34.81   72.24
+## X2.Oxoglutarate                  223.63        25.03        80.64   73.70
+## X3.Aminoisobutyrate               56.26         8.67        17.99   57.97
+\end{verbatim}
+
+El SE tiene una dimensión de 63 filas y 77 columnas, lo que verifica que
+contiene 63 metabolitos (características) y 77 pacientes (muestras),
+confirmando una estructura típica de esta clase de objetos. Los datos de
+expresión de metabolitos son accesibles mediante la función assay(), tal
+y como muestra el bloque de código, en el que se visualizan los datos de
+los primeras 10 pacientes para los 6 primeros metabolitos.
+
+A continuación, se presenta el contenido del objeto colData, que
+almacena los metadatos de las muestras. En este caso, contiene una sola
+columna denominada Muscle.loss, que refleja la condición de cada
+paciente (ya sea cachexic o control):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colData}\NormalTok{(se\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## DataFrame with 77 rows and 1 column
+##              Muscle.loss
+##              <character>
+## PIF_178         cachexic
+## PIF_087         cachexic
+## PIF_090         cachexic
+## NETL_005_V1     cachexic
+## PIF_115         cachexic
+## ...                  ...
+## NETCR_019_V2     control
+## NETL_012_V1      control
+## NETL_012_V2      control
+## NETL_003_V1      control
+## NETL_003_V2      control
+\end{verbatim}
+
+Finalmente, al inspeccionar los primeros nombres de las columnas con
+colnames(se\_object), se observan los identificadores de los pacientes,
+como PIF\_178, PIF\_087, PIF\_090, entre otros.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(se\_object))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "PIF_178"     "PIF_087"     "PIF_090"     "NETL_005_V1" "PIF_115"    
+## [6] "PIF_110"
+\end{verbatim}
+
+Este análisis preliminar del SE nos proporciona una visión general de la
+estructura de los datos y nos permite verificar la correcta organización
+tanto de las características (metabolitos) como de las muestras
+(pacientes).
+
+\subsubsection{4.3. Anova}\label{anova}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar las librerías necesarias}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.4.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.4.2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Adjuntando el paquete: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Biobase':
+## 
+##     combine
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:GenomicRanges':
+## 
+##     intersect, setdiff, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:GenomeInfoDb':
+## 
+##     intersect
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:IRanges':
+## 
+##     collapse, desc, intersect, setdiff, slice, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:matrixStats':
+## 
+##     count
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:S4Vectors':
+## 
+##     first, intersect, rename, setdiff, setequal, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:BiocGenerics':
+## 
+##     combine, intersect, setdiff, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(}\FunctionTok{assay}\NormalTok{(se\_object))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 63 77
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anova\_results }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(}\FunctionTok{assay}\NormalTok{(se\_object), }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{  aov\_result }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(x }\SpecialCharTok{\textasciitilde{}} \FunctionTok{colData}\NormalTok{(se\_object)}\SpecialCharTok{$}\NormalTok{Muscle.loss)}
+  \CommentTok{\# Extraemos el valor p sin la estructura de lista}
+\NormalTok{  p\_value }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(aov\_result)[[}\DecValTok{1}\NormalTok{]][}\StringTok{"Pr(\textgreater{}F)"}\NormalTok{][}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+  \FunctionTok{return}\NormalTok{(p\_value)}
+\NormalTok{\})}
+
+\CommentTok{\# Crear el DataFrame correctamente}
+\NormalTok{results\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{metabolite =} \FunctionTok{rownames}\NormalTok{(}\FunctionTok{assay}\NormalTok{(se\_object)),}
+  \AttributeTok{p\_value =}\NormalTok{ anova\_results}
+\NormalTok{)}
+
+\CommentTok{\# Verificamos que el DataFrame se crea correctamente}
+\NormalTok{results\_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                              metabolite      p_value
+## X1.6.Anhydro.beta.D.glucose X1.6.Anhydro.beta.D.glucose 0.0507913658
+## X1.Methylnicotinamide             X1.Methylnicotinamide 0.9343185339
+## X2.Aminobutyrate                       X2.Aminobutyrate 0.0274454761
+## X2.Hydroxyisobutyrate             X2.Hydroxyisobutyrate 0.0052880207
+## X2.Oxoglutarate                         X2.Oxoglutarate 0.2250725245
+## X3.Aminoisobutyrate                 X3.Aminoisobutyrate 0.1779554046
+## X3.Hydroxybutyrate                   X3.Hydroxybutyrate 0.0011853671
+## X3.Hydroxyisovalerate             X3.Hydroxyisovalerate 0.0078274621
+## X3.Indoxylsulfate                     X3.Indoxylsulfate 0.0089161341
+## X4.Hydroxyphenylacetate         X4.Hydroxyphenylacetate 0.4818107935
+## Acetate                                         Acetate 0.0060731953
+## Acetone                                         Acetone 0.3723624590
+## Adipate                                         Adipate 0.0274331625
+## Alanine                                         Alanine 0.0011788609
+## Asparagine                                   Asparagine 0.0067852184
+## Betaine                                         Betaine 0.0029929659
+## Carnitine                                     Carnitine 0.0621334639
+## Citrate                                         Citrate 0.0128569793
+## Creatine                                       Creatine 0.0526324364
+## Creatinine                                   Creatinine 0.0005129808
+## Dimethylamine                             Dimethylamine 0.0004460069
+## Ethanolamine                               Ethanolamine 0.0265705687
+## Formate                                         Formate 0.0174219763
+## Fucose                                           Fucose 0.0058534857
+## Fumarate                                       Fumarate 0.0590430806
+## Glucose                                         Glucose 0.0333063584
+## Glutamine                                     Glutamine 0.0010607678
+## Glycine                                         Glycine 0.0281395160
+## Glycolate                                     Glycolate 0.0563341550
+## Guanidoacetate                           Guanidoacetate 0.1378998638
+## Hippurate                                     Hippurate 0.0232194018
+## Histidine                                     Histidine 0.0109704361
+## Hypoxanthine                               Hypoxanthine 0.2555158507
+## Isoleucine                                   Isoleucine 0.1326513615
+## Lactate                                         Lactate 0.1228434803
+## Leucine                                         Leucine 0.0002695046
+## Lysine                                           Lysine 0.2817634974
+## Methylamine                                 Methylamine 0.0019466201
+## Methylguanidine                         Methylguanidine 0.2616448016
+## N.N.Dimethylglycine                 N.N.Dimethylglycine 0.0001554346
+## O.Acetylcarnitine                     O.Acetylcarnitine 0.0616844278
+## Pantothenate                               Pantothenate 0.5353413018
+## Pyroglutamate                             Pyroglutamate 0.0004845363
+## Pyruvate                                       Pyruvate 0.0174471086
+## Quinolinate                                 Quinolinate 0.0001185108
+## Serine                                           Serine 0.0037584213
+## Succinate                                     Succinate 0.0113771704
+## Sucrose                                         Sucrose 0.1194324540
+## Tartrate                                       Tartrate 0.4464672671
+## Taurine                                         Taurine 0.0323497353
+## Threonine                                     Threonine 0.0032881849
+## Trigonelline                               Trigonelline 0.0128629342
+## Trimethylamine.N.oxide           Trimethylamine.N.oxide 0.0415941735
+## Tryptophan                                   Tryptophan 0.0018983944
+## Tyrosine                                       Tyrosine 0.0112887118
+## Uracil                                           Uracil 0.5429079298
+## Valine                                           Valine 0.0001394238
+## Xylose                                           Xylose 0.2154519963
+## cis.Aconitate                             cis.Aconitate 0.0038978573
+## myo.Inositol                               myo.Inositol 0.0022150347
+## trans.Aconitate                         trans.Aconitate 0.0220856691
+## pi.Methylhistidine                   pi.Methylhistidine 0.1413081041
+## tau.Methylhistidine                 tau.Methylhistidine 0.0220399755
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtrar los metabolitos con valor p \textless{} 0.05}
+\NormalTok{significant\_metabolites }\OtherTok{\textless{}{-}}\NormalTok{ results\_df[results\_df}\SpecialCharTok{$}\NormalTok{p\_value }\SpecialCharTok{\textless{}} \FloatTok{0.05}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ver los metabolitos significativos}
+\FunctionTok{head}\NormalTok{(significant\_metabolites)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                  metabolite     p_value
+## X2.Aminobutyrate           X2.Aminobutyrate 0.027445476
+## X2.Hydroxyisobutyrate X2.Hydroxyisobutyrate 0.005288021
+## X3.Hydroxybutyrate       X3.Hydroxybutyrate 0.001185367
+## X3.Hydroxyisovalerate X3.Hydroxyisovalerate 0.007827462
+## X3.Indoxylsulfate         X3.Indoxylsulfate 0.008916134
+## Acetate                             Acetate 0.006073195
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(significant\_metabolites)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 40
+\end{verbatim}
+
+En el análisis realizado, se identificaron numerosos metabolitos cuya
+concentración se asocia de manera significativa con el estado de pérdida
+muscular (Muscle.loss). Resulta evidente que, de forma previa a la
+realización del análisis de muestras, todos los metabolitos objetivo son
+sospechosos de tener relación directa con el estado de caquexia. Tal es
+así que, de los 65 metabolitos analizados, hasta 40 de estos mostraron
+una relación estadísticamente significativa (p \textless{} 0.05). Si
+filtramos los metabolitos con un nivel de significancia más estricto (p
+\textless{} 0.001), se obtienen 7 metabolitos altamente significativos,
+lo que sugiere que estos compuestos podrían ser biomarcadores
+potenciales para la caquexia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtrar metabolitos con p \textless{} 0.01 (más estrictos)}
+\NormalTok{highly\_significant\_metabolites }\OtherTok{\textless{}{-}}\NormalTok{ significant\_metabolites[significant\_metabolites}\SpecialCharTok{$}\NormalTok{p\_value }\SpecialCharTok{\textless{}} \FloatTok{0.001}\NormalTok{, ]}
+
+\CommentTok{\# Mostrar los más relevantes}
+\FunctionTok{print}\NormalTok{(highly\_significant\_metabolites)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                              metabolite      p_value
+## Creatinine                   Creatinine 0.0005129808
+## Dimethylamine             Dimethylamine 0.0004460069
+## Leucine                         Leucine 0.0002695046
+## N.N.Dimethylglycine N.N.Dimethylglycine 0.0001554346
+## Pyroglutamate             Pyroglutamate 0.0004845363
+## Quinolinate                 Quinolinate 0.0001185108
+## Valine                           Valine 0.0001394238
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(highly\_significant\_metabolites)  }\CommentTok{\# Número de metabolitos altamente significativos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+Entre los metabolitos cuya concentración mostró una asociación más
+significativa con el estado de pérdida muscular (p \textless{} 0.01), se
+identificaron creatinina, dimethylamina, leucina, N.N.Dimethylglycina,
+pyroglutamata, quinolinata y valina.
+
+\subsection{5. Discusión}\label{discusiuxf3n}
+
+En este estudio, se utilizó un set de datos sobre pacientes enfermos de
+cáncer que presentaban o no caquexia. Para su análisis, se utilizó la
+clase SummarizedExperiment con la finalidad de organizar y analizar los
+datos con información sobre la expresión de metabolitos y los metadatos
+asociados a las muestras de pacientes. En este caso,
+SummarizedExperiment facilitó la integración de las mediciones de
+metabolitos (almacenadas en el componente assays) con los metadatos
+sobre condición de pérdida muscular (Muscle.loss) relacionados con los
+pacientes (almacenados en colData). A diferencia de clases más antiguas
+como ExpressionSet, SummarizedExperiment permitió trabajar con un solo
+objeto que agrupaba todos los datos y metadatos relacionados,
+simplificando su manejo y análisis. La estructura del objeto facilitó la
+realización de análisis de datos multivariantes de manera eficiente, sin
+necesidad de gestionar múltiples objetos en paralelo, lo que mejoró la
+reproducibilidad y la organización del análisis.
+
+El objetivo principal de esta actividad era la creación del objeto
+SummarizedExperiment, su exploración y uso para análisis a elección. Por
+ello se analizó la estructura del SE creado, encontrando que el SE
+contiene una matriz de expresión accesible a través de
+assay(se\_object), donde se visualizan las abundancias de los
+metabolitos en cada paciente. Los metadatos de los pacientes,
+almacenados en colData(se\_object), incluyen una columna clave llamada
+Muscle.loss, que indica si el paciente presentaba caquexia o era parte
+del grupo control, y los identificadores únicos de los pacientes,
+accesibles con colnames(se\_object), permiten vincular los datos de
+expresión con la información clínica correspondiente. Este análisis
+preliminar confirmó la correcta estructura del SE, con los datos de
+metabolómica y los metadatos clínicos organizados de manera coherente.
+La dimensión del objeto (63 metabolitos x 77 pacientes) y la inspección
+de los datos de expresión proporcionan una base sólida para el análisis
+posterior.
+
+Por último, se aplicó un análisis de varianza (ANOVA) para determinar la
+relación entre los metabolitos y la condición de pérdida muscular de los
+pacientes. Los resultados obtenidos mostraron que 40 de los 63
+metabolitos analizados presentaron una relación estadísticamente
+significativa con el estado de caquexia, con un valor de p \textless{}
+0.05. Esto sugirió que estos metabolitos tienen una alta probabilidad de
+tener un papel relevante en la patogénesis de la caquexia, por lo que su
+análisis como biomarcadores potenciales en el diagnóstico o seguimiento
+de esta condición es acertado por parte del estudio. Además, al filtrar
+los metabolitos con un nivel de significancia más estricto (p
+\textless{} 0.001), se identificaron 7 metabolitos altamente
+significativos, lo que sugiere que estos compuestos podrían ser
+biomarcadores esenciales. De hecho, algunos de estos metabolitos, como
+creatinina, leucina y valina, han sido previamente asociados con la
+caquexia y la pérdida muscular en estudios anteriores, lo que respalda
+la validez de los resultados obtenidos (Okamura et al. 2023; Viana et
+al. 2020).
+
+\subsection{6. Conclusiones}\label{conclusiones}
+
+La caquexia es una enfermedad compleja y multifactorial, caracterizada
+por la pérdida de peso a través de la pérdida de masa muscular
+esquelética y tejido adiposo, un desequilibrio en la regulación
+metabólica y una reducción en la ingesta de alimentos. Las principales
+causas de este trastorno son factores catabólicos producidos por tumores
+en la circulación sistémica, así como factores fisiológicos como la
+activación inflamatoria desequilibrada, la proteólisis, la autofagia y
+la lipólisis que pueden ocurrir en cánceres gástrico, pancreático,
+esofágico, pulmonar, hepático y colorrectal ({``{Caquexia y c{á}ncer -
+Efectos secundarios}''} 2024).
+
+En el presente estudio, la construcción y exploración del objeto
+SummarizedExperiment permitieron organizar eficientemente los datos de
+metabolómica y sus metadatos asociados al proyecto, asegurando una
+estructura coherente para el análisis. A través del ANOVA, se
+identificaron 40 metabolitos significativamente asociados con la
+caquexia (p \textless{} 0.05), y 7 de ellos mostraron una relación
+altamente significativa (p \textless{} 0.001), creatinina,
+dimethylamina, leucina, N.N.Dimethylglycina, pyroglutamata, quinolinata
+y valina. Estos hallazgos respaldan la relevancia de estos metabolitos
+en la patogénesis de la caquexia y su potencial como biomarcadores clave
+para el diagnóstico y seguimiento de la condición.
+
+\subsection*{7. Bibliografía}\label{bibliografuxeda}
+\addcontentsline{toc}{subsection}{7. Bibliografía}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-CaquexiaCancerEfectos2024}
+{``{Caquexia y c{á}ncer - Efectos secundarios}.''} 2024. \{cgvArticle\}.
+https://www.cancer.gov/espanol/cancer/
+tratamiento/efectos-secundarios/caquexia-cancer.
+
+\bibitem[\citeproctext]{ref-ConvertSeuratObject}
+{``Convert {Seurat Object} to {Summarised Experiment} or
+{ExpressionSet}.''} n.d. https://support.bioconductor. org/p/9157595/.
+Accessed April 1, 2025.
+
+\bibitem[\citeproctext]{ref-cuiMetabolomicsItsApplications2022}
+Cui, Pengfei, Xiaoyi Li, Caihua Huang, Qinxi Li, and Donghai Lin. 2022.
+{``Metabolomics and Its {Applications} in {Cancer Cachexia}.''}
+\emph{Frontiers in Molecular Biosciences} 9 (February): 789889.
+\url{https://doi.org/10.3389/fmolb.2022.789889}.
+
+\bibitem[\citeproctext]{ref-okamuraKidneyFunctionCachexia2023}
+Okamura, Masatsugu, Masaaki Konishi, Javed Butler, Kamyar
+Kalantar-Zadeh, Stephan von Haehling, and Stefan D. Anker. 2023.
+{``Kidney Function in Cachexia and Sarcopenia: {Facts} and Numbers.''}
+\emph{Journal of Cachexia, Sarcopenia and Muscle} 14 (4): 1589--95.
+\url{https://doi.org/10.1002/jcsm.13260}.
+
+\bibitem[\citeproctext]{ref-viana1HNMRBasedSerum2020}
+Viana, Laís Rosa, Leisa Lopes-Aguiar, Rafaela Rossi Rosolen, Rogerio
+Willians dos Santos, and Maria Cristina Cintra Gomes-Marcondes. 2020.
+{``{1H-NMR Based Serum Metabolomics Identifies Different Profile}
+Between {Sarcopenia} and {Cancer Cachexia} in {Ageing Walker} 256
+{Tumour-Bearing Rats}.''} \emph{Metabolites} 10 (4): 161.
+\url{https://doi.org/10.3390/metabo10040161}.
+
+\end{CSLReferences}
+
+\end{document}

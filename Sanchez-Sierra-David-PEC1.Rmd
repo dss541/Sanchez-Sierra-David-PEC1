@@ -30,7 +30,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 1. Resumen {#resumen}
 
+En esta actividad, se ha estudiado la relación entre metabolitos sanguíneos y la condición de caquexia en pacientes con cáncer mediante el uso de la clase SummarizedExperiment (SE). Se utilizó un conjunto de datos que incluyó 63 metabolitos y 77 muestras de pacientes, los cuales fueron analizados para identificar posibles biomarcadores relacionados con la pérdida muscular. La creación del objeto (SE) se realizó con el objetivo de aprender a organizar y estructurar unos datos ómicos de forma adecuada para su correcto procesamiento. El análisis de dicha clase verificó que su estructura fuera correcta, de forma que los metabolitos quedaran almacenados en matrices de expresión y los metadatos de las muestras (condición de caquexia) integrados en un solo objeto. A través de un análisis de varianza (ANOVA), se identificaron 40 metabolitos significativamente asociados con la caquexia, de los cuales 7 mostraron una relación altamente significativa (p < 0.001). Entre ellos, se destacaron metabolitos como creatinina, dimethylamina, leucina, N.N.Dimethylglycina, pyroglutamata, quinolinata y valina, previamente asociados con la caquexia en estudios previos. Estos hallazgos sugieren que estos metabolitos pueden servir como biomarcadores clave en el diagnóstico y seguimiento de la caquexia, lo que subraya la importancia de la metabolómica en la investigación del cáncer y sus complicaciones asociadas.
+
 ## 2. Objetivos {#objetivos}
+
+El objetivo principal de este estudio fue la creación, exploración y análisis de datos utilizando el objeto SummarizedExperiment (SE), con el fin de investigar las diferencias en los metabolitos entre pacientes con y sin caquexia. Este enfoque se orientó hacia la organización y análisis de datos ómicos, en particular datos de metabolómica, asociados con los metadatos clínicos de los pacientes. Los objetivos específicos fueron:
+
+1.  Crear el objeto SummarizedExperiment: Organizar los datos de expresión de metabolitos (63 metabolitos) y los metadatos asociados a las muestras de 77 pacientes en un solo objeto para facilitar su manejo y análisis.
+
+2.  Explorar la estructura del objeto SummarizedExperiment: Inspeccionar las dimensiones y los componentes clave del SE, como las matrices de expresión de metabolitos (almacenadas en el componente assays) y los metadatos (almacenados en colData), con el fin de verificar la correcta organización de los datos.
+
+3.  Realizar un análisis estadístico (ANOVA): Evaluar la relación entre los metabolitos y la condición de pérdida muscular en los pacientes (caquexia) mediante un análisis de varianza (ANOVA), con el fin de identificar metabolitos potencialmente significativos asociados con esta condición.
 
 ## 3. Enfoque y método seguido {#enfoque-y-método-seguido}
 
@@ -38,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Para esta actividad, se seleccionó el dataset "caquexia" obtenido del repositorio de github adjunto al encunciado. Este conjunto de datos ha sido ampliamente utilizado en diversos tutoriales de MetaboAnalyst, lo que permitió expandir el análisis realizado al disponer de información sobre numerosos enfoques y metodologías establecidas.
 
-Las técnicas metabolómicas se han utilizado para estudiar los cambios metabólicos, incluyendo las variaciones en las concentraciones de metabolitos y las vías metabólicas alteradas en la progresión de la caquexia relacionada con el cáncer (CC), así como para ampliar la comprensión fundamental de la pérdida muscular[@cuiMetabolomicsItsApplications2022]. En este dataset, se incluyen datos sobre 77 pacientes oncológicos, clasificados en dos grupos según su estado de pérdida muscular: controles y caquéxicos. 
+Las técnicas metabolómicas se han utilizado para estudiar los cambios metabólicos, incluyendo las variaciones en las concentraciones de metabolitos y las vías metabólicas alteradas en la progresión de la caquexia relacionada con el cáncer (CC), así como para ampliar la comprensión fundamental de la pérdida muscular[@cuiMetabolomicsItsApplications2022]. En este dataset, se incluyen datos sobre 77 pacientes oncológicos, clasificados en dos grupos según su estado de pérdida muscular: controles y caquéxicos.
 
 La descarga de los datos se realizó utilizando R, empleando la función read.csv() para cargar el archivo en formato tabular:
 
@@ -46,13 +56,14 @@ La descarga de los datos se realizó utilizando R, empleando la función read.cs
 dataset <- read.csv("human_cachexia.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 str(dataset, max.level = 0)
 ```
+
 Como puede observarse, el dataset contiene información sobre 65 variables, incluyendo las concentraciones de diversos metabolitos en las muestras de orina asociadas con los dos grupos de pacientes. Además, el conjunto de datos incluye el identificador de cada paciente y los metadatos relacionados con las características de estos, en este caso el tipo categórico (control o caquéxicos).
 
 ### 3.2. Creación del objeto SummarizedExperiment {#creación-del-objeto-summarizedexperiment}
 
-Tras cargar los datos, se creó un objeto de clase SummarizedExperiment proporcionada por el paquete Bioconductor, el cual permite estructurar los datos y metadatos asociados a cada observación, facilitando  su manipulación y análisis. Primero se asignaron los valores de Patient.ID como nombres de fila para el dataset, asegurando que cada muestra tuviera una identificación única en la matriz. Tras ello, se eliminó la columna Patient.ID del conjunto de datos, ya que solo se necesitaba para asignar los nombres de las filas, y no debía formar parte de los datos de expresión.
+Tras cargar los datos, se creó un objeto de clase SummarizedExperiment proporcionada por el paquete Bioconductor, el cual permite estructurar los datos y metadatos asociados a cada observación, facilitando su manipulación y análisis. Primero se asignaron los valores de Patient.ID como nombres de fila para el dataset, asegurando que cada muestra tuviera una identificación única en la matriz. Tras ello, se eliminó la columna Patient.ID del conjunto de datos, ya que solo se necesitaba para asignar los nombres de las filas, y no debía formar parte de los datos de expresión.
 
-A continuación, se extrajeron las mediciones de los metabolitos del dataset, excluyendo la columna Muscle.loss, que corresponde a la información de los metadatos y no a las concentraciones de los metabolitos. Las concentraciones de metabolitos se almacenaron en una matriz de expresión (expr_matrix), la cual fue transpuesta para que las muestras fueran representadas en las columnas, lo que facilita la asociación con los metadatos. En el siguiente paso, se creó el DataFrame para los metadatos que debía contener la columna Muscle.loss (información sobre el estado de caquexia de las muestras). 
+A continuación, se extrajeron las mediciones de los metabolitos del dataset, excluyendo la columna Muscle.loss, que corresponde a la información de los metadatos y no a las concentraciones de los metabolitos. Las concentraciones de metabolitos se almacenaron en una matriz de expresión (expr_matrix), la cual fue transpuesta para que las muestras fueran representadas en las columnas, lo que facilita la asociación con los metadatos. En el siguiente paso, se creó el DataFrame para los metadatos que debía contener la columna Muscle.loss (información sobre el estado de caquexia de las muestras).
 
 El código que implementa este procedimiento es el siguiente:
 
@@ -61,7 +72,6 @@ El código que implementa este procedimiento es el siguiente:
 library(S4Vectors)
 library(SummarizedExperiment)
 ```
-
 
 ```{r}
 # Asignar ID como nombre de fila
@@ -87,6 +97,7 @@ se_object <- SummarizedExperiment(
 # Verificar el objeto creado
 se_object
 ```
+
 ```{r}
 # Guardar el objeto SummarizedExperiment en un archivo .Rda
 save(se_object, file = "SE_object.Rda")
@@ -96,7 +107,7 @@ save(se_object, file = "SE_object.Rda")
 
 ### 4.1. Diferencias entre SummarizedExperiment y ExpressionSet {#diferencias-entre-summarizedexperiment-y-expressionset}
 
-La clase SummarizedExperiment es una extensión moderna de ExpressionSet, con varias mejoras en cuanto a la estructura de almacenamiento y la interoperabilidad con otras herramientas de Bioconductor. Una de las diferencias más notables es que SummarizedExperiment utiliza el componente assays para manejar las matrices de datos en lugar de la función exprs() que se usaba en ExpressionSet. Además, SummarizedExperiment también incorpora colData y rowData para el almacenamiento de los metadatos relativos a las muestras y las características, respectivamente, sustituyendo a las funciones pData() y fData() que se encontraban en ExpressionSet. Esta modificación simplifica y vuelve más adaptable la gestión de dichos metadatos. Un beneficio adicional significativo de SummarizedExperiment reside en su mejorada interoperabilidad con análisis de datos multi-ómicos, lo que la establece como una herramienta más idónea para la realización de estudios que combinan distintos tipos de datos ómicos, tales como datos genómicos, transcriptómicos y proteómicos [@ConvertSeuratObject]. 
+La clase SummarizedExperiment es una extensión moderna de ExpressionSet, con varias mejoras en cuanto a la estructura de almacenamiento y la interoperabilidad con otras herramientas de Bioconductor. Una de las diferencias más notables es que SummarizedExperiment utiliza el componente assays para manejar las matrices de datos en lugar de la función exprs() que se usaba en ExpressionSet. Además, SummarizedExperiment también incorpora colData y rowData para el almacenamiento de los metadatos relativos a las muestras y las características, respectivamente, sustituyendo a las funciones pData() y fData() que se encontraban en ExpressionSet. Esta modificación simplifica y vuelve más adaptable la gestión de dichos metadatos. Un beneficio adicional significativo de SummarizedExperiment reside en su mejorada interoperabilidad con análisis de datos multi-ómicos, lo que la establece como una herramienta más idónea para la realización de estudios que combinan distintos tipos de datos ómicos, tales como datos genómicos, transcriptómicos y proteómicos [@ConvertSeuratObject].
 
 Estas diferencias hacen que SummarizedExperiment resulte una opción más adecuada para manejar y analizar datos provenientes de diversas fuentes dentro de un mismo entorno de trabajo, otorgándole una mayor flexibilidad en comparación con ExpressionSet.
 
@@ -108,6 +119,7 @@ En esta sección se muestra el análisis inicial del objeto SummarizedExperiment
 dim(se_object)
 head(assay(se_object)[ , 1:10])
 ```
+
 El SE tiene una dimensión de 63 filas y 77 columnas, lo que verifica que contiene 63 metabolitos (características) y 77 pacientes (muestras), confirmando una estructura típica de esta clase de objetos. Los datos de expresión de metabolitos son accesibles mediante la función assay(), tal y como muestra el bloque de código, en el que se visualizan los datos de los primeras 10 pacientes para los 6 primeros metabolitos.
 
 A continuación, se presenta el contenido del objeto colData, que almacena los metadatos de las muestras. En este caso, contiene una sola columna denominada Muscle.loss, que refleja la condición de cada paciente (ya sea cachexic o control):
@@ -154,18 +166,19 @@ results_df <- data.frame(
 results_df
 ```
 
-
-
 ```{r}
 # Filtrar los metabolitos con valor p < 0.05
 significant_metabolites <- results_df[results_df$p_value < 0.05, ]
+```
 
+
+```{r}
 # Ver los metabolitos significativos
 head(significant_metabolites)
 nrow(significant_metabolites)
 ```
 
-En el análisis realizado, se identificaron numerosos metabolitos cuya concentración se asocia de manera significativa con el estado de pérdida muscular (Muscle.loss). Resulta evidente que, de forma previa a la realización del análisis de muestras, todos los metabolitos objetivo son sospechosos de tener relación directa con el estado de caquexia. Tal es así que, de los 65 metabolitos analizados, hasta 40 de estos  mostraron una relación estadísticamente significativa (p < 0.05). Si filtramos los metabolitos con un nivel de significancia más estricto (p < 0.001), se obtienen 7 metabolitos altamente significativos, lo que sugiere que estos compuestos podrían ser biomarcadores potenciales para la caquexia.
+En el análisis realizado, se identificaron numerosos metabolitos cuya concentración se asocia de manera significativa con el estado de pérdida muscular (Muscle.loss). Resulta evidente que, de forma previa a la realización del análisis de muestras, todos los metabolitos objetivo son sospechosos de tener relación directa con el estado de caquexia. Tal es así que, de los 65 metabolitos analizados, hasta 40 de estos mostraron una relación estadísticamente significativa (p \< 0.05). Si filtramos los metabolitos con un nivel de significancia más estricto (p \< 0.001), se obtienen 7 metabolitos altamente significativos, lo que sugiere que estos compuestos podrían ser biomarcadores potenciales para la caquexia.
 
 ```{r}
 # Filtrar metabolitos con p < 0.01 (más estrictos)
@@ -176,7 +189,7 @@ print(highly_significant_metabolites)
 nrow(highly_significant_metabolites)  # Número de metabolitos altamente significativos
 ```
 
-Entre los metabolitos cuya concentración mostró una asociación más significativa con el estado de pérdida muscular (p < 0.01), se identificaron Creatinine, Dimethylamine, Leucine, N.N.Dimethylglycine, Pyroglutamate, Quinolinate y Valine. 
+Entre los metabolitos cuya concentración mostró una asociación más significativa con el estado de pérdida muscular (p \< 0.01), se identificaron creatinina, dimethylamina, leucina, N.N.Dimethylglycina, pyroglutamata, quinolinata y valina.
 
 ## 5. Discusión {#discusión}
 
@@ -184,18 +197,12 @@ En este estudio, se utilizó un set de datos sobre pacientes enfermos de cáncer
 
 El objetivo principal de esta actividad era la creación del objeto SummarizedExperiment, su exploración y uso para análisis a elección. Por ello se analizó la estructura del SE creado, encontrando que el SE contiene una matriz de expresión accesible a través de assay(se_object), donde se visualizan las abundancias de los metabolitos en cada paciente. Los metadatos de los pacientes, almacenados en colData(se_object), incluyen una columna clave llamada Muscle.loss, que indica si el paciente presentaba caquexia o era parte del grupo control, y los identificadores únicos de los pacientes, accesibles con colnames(se_object), permiten vincular los datos de expresión con la información clínica correspondiente. Este análisis preliminar confirmó la correcta estructura del SE, con los datos de metabolómica y los metadatos clínicos organizados de manera coherente. La dimensión del objeto (63 metabolitos x 77 pacientes) y la inspección de los datos de expresión proporcionan una base sólida para el análisis posterior.
 
-Por último, se aplicó un análisis de varianza (ANOVA) para determinar la relación entre los metabolitos y la condición de pérdida muscular de los pacientes. Los resultados obtenidos mostraron que 40 de los 63 metabolitos analizados presentaron una relación estadísticamente significativa con el estado de caquexia, con un valor de p < 0.05. Esto sugirió que estos metabolitos tienen una alta probabilidad de tener un papel relevante en la patogénesis de la caquexia, por lo que su análisis como biomarcadores potenciales en el diagnóstico o seguimiento de esta condición es acertado por parte del estudio. Además, al filtrar los metabolitos con un nivel de significancia más estricto (p < 0.001), se identificaron 7 metabolitos altamente significativos, lo que sugiere que estos compuestos podrían ser biomarcadores esenciales.
-
-Metabolitos como X2.Aminobutyrate, X3.Hydroxybutyrate y Acetate fueron identificados entre los compuestos más relevantes, lo que indicó que estas moléculas podrían estar involucradas en los mecanismos subyacentes de la pérdida muscular. No obstante, dado que el análisis realizado fue observacional, no se pudo establecer una relación causal directa entre los metabolitos y la caquexia, lo que requiere investigaciones adicionales y más específicas.
-
-En resumen, el uso de SummarizedExperiment permitió una organización eficiente y flexible de los datos, mientras que el análisis de los metabolitos proporcionó resultados prometedores que abrieron la puerta a investigaciones futuras que exploren las interacciones entre estos compuestos y el desarrollo de la caquexia.
+Por último, se aplicó un análisis de varianza (ANOVA) para determinar la relación entre los metabolitos y la condición de pérdida muscular de los pacientes. Los resultados obtenidos mostraron que 40 de los 63 metabolitos analizados presentaron una relación estadísticamente significativa con el estado de caquexia, con un valor de p \< 0.05. Esto sugirió que estos metabolitos tienen una alta probabilidad de tener un papel relevante en la patogénesis de la caquexia, por lo que su análisis como biomarcadores potenciales en el diagnóstico o seguimiento de esta condición es acertado por parte del estudio. Además, al filtrar los metabolitos con un nivel de significancia más estricto (p \< 0.001), se identificaron 7 metabolitos altamente significativos, lo que sugiere que estos compuestos podrían ser biomarcadores esenciales. De hecho, algunos de estos metabolitos, como creatinina, leucina y valina, han sido previamente asociados con la caquexia y la pérdida muscular en estudios anteriores, lo que respalda la validez de los resultados obtenidos [@okamuraKidneyFunctionCachexia2023; @viana1HNMRBasedSerum2020].
 
 ## 6. Conclusiones {#conclusiones}
 
 La caquexia es una enfermedad compleja y multifactorial, caracterizada por la pérdida de peso a través de la pérdida de masa muscular esquelética y tejido adiposo, un desequilibrio en la regulación metabólica y una reducción en la ingesta de alimentos. Las principales causas de este trastorno son factores catabólicos producidos por tumores en la circulación sistémica, así como factores fisiológicos como la activación inflamatoria desequilibrada, la proteólisis, la autofagia y la lipólisis que pueden ocurrir en cánceres gástrico, pancreático, esofágico, pulmonar, hepático y colorrectal [@CaquexiaCancerEfectos2024].
 
-En el contexto oncológico, la caquexia es una de las principales causas de morbilidad y mortalidad, contribuyendo directamente a aproximadamente el 25% de los fallecimientos relacionados con el cáncer. Esta condición no solo deteriora la calidad de vida del paciente, sino que también puede limitar la eficacia de los tratamientos antineoplásicos y aumentar la toxicidad asociada a los mismos.
+En el presente estudio, la construcción y exploración del objeto SummarizedExperiment permitieron organizar eficientemente los datos de metabolómica y sus metadatos asociados al proyecto, asegurando una estructura coherente para el análisis. A través del ANOVA, se identificaron 40 metabolitos significativamente asociados con la caquexia (p \< 0.05), y 7 de ellos mostraron una relación altamente significativa (p \< 0.001), creatinina, dimethylamina, leucina, N.N.Dimethylglycina, pyroglutamata, quinolinata y valina. Estos hallazgos respaldan la relevancia de estos metabolitos en la patogénesis de la caquexia y su potencial como biomarcadores clave para el diagnóstico y seguimiento de la condición.
 
-Las causas de la caquexia en pacientes con cáncer son complejas y multifactoriales. Se cree que los tumores malignos pueden liberar sustancias como el factor de necrosis tumoral alfa (TNF-a), la interleucina-6 (IL-6) y otras citoquinas inflamatorias que inducen la degradación de proteínas y lípidos, llevando a la pérdida de masa muscular y tejido adiposo. Además, la inflamación sistémica y los cambios metabólicos asociados al cáncer pueden provocar un desequilibrio entre la ingesta y el gasto energético, exacerbando la pérdida de peso y la atrofia muscular.
-
-## Bibliografía {#bibliografía}
+## 7. Bibliografía {#bibliografía}
