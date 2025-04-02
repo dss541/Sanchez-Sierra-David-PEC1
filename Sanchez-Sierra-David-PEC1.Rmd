@@ -16,16 +16,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Tabla de contenidos
 
-1.  [Resumen](#resumen)\
-2.  [Objetivos](#objetivos)\
-3.  [Enfoque y método seguido](#enfoque-y-método-seguido) 3.1. [Selección y descarga del dataset](#selección-y-descarga-del-dataset)\
-    3.2. [Creación del objeto SummarizedExperiment](#creación-del-objeto-summarizedexperiment)\
+1.  [Resumen](#resumen)
+2.  [Objetivos](#objetivos)
+3.  [Enfoque y método seguido](#enfoque-y-método-seguido)  \
+    3.1. [Selección y descarga del dataset](#selección-y-descarga-del-dataset)\
+    3.2. [Creación del objeto SummarizedExperiment](#creación-del-objeto-summarizedexperiment)
 4.  [Resultados](#resultados)\
     4.1. [Diferencias entre SummarizedExperiment y ExpressionSet](#diferencias-entre-summarizedexperiment-y-expressionset)\
     4.2. [Análisis exploratorio](#análisis-exploratorio)\
-    4.3. [Análisis de metabolitos asociados a la pérdida muscular](#anova)\
-5.  [Discusión](#discusión)\
-6.  [Conclusiones](#conclusiones)\
+    4.3. [Análisis de metabolitos asociados a la pérdida muscular](#anova)
+5.  [Discusión](#discusión)
+6.  [Conclusiones](#conclusiones)
 7.  [Bibliografía](#bibliografía)
 
 ## 1. Resumen {#resumen}
@@ -138,7 +139,7 @@ Este análisis preliminar del SE nos proporciona una visión general de la estru
 
 ### 4.3. Anova {#anova}
 
-```{r}
+```{r, results='hide', message=FALSE, warning = FALSE}
 # Cargar las librerías necesarias
 library(ggplot2)
 library(dplyr)
