@@ -1,0 +1,31 @@
+---
+title: "Descripción metadatos"
+author: "David Sánchez Sierra"
+date: "2025-04-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descripción de los metadatos del dataset cachexia
+
+El dataset utilizado en este análisis contiene datos de metabolómica de pacientes con caquexia, almacenando la concentración de 63 metabolitos en 77 pacientes, un identificador para cada uno y su estado (caquéxico o control). El conjunto de datos ha sido sometido a un control de integridad confirmando su calidad, lo que garantiza que los valores obtenidos son consistentes y confiables. En cuanto a la estructura de las muestras, se ha determinado que no están emparejadas, lo que indica que cada muestra proviene de pacientes distintos, sin relaciones directas entre ellas. También se realizó un control de calidad para confirmar la ausencia total de valores faltantes. 
+
+Esta información, junto con la clara diferenciación en dos grupos, proporciona una base sólida para identificar biomarcadores y comprender mejor las alteraciones metabólicas asociadas a la patología en estudio. Los datos fueron convertidos a una clase SummarizedExperiment para facilitar su manejo y análisis, escribiendo un archivo .Rda para su posterior uso. Comprobamos que se carga correctamente. 
+
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+load("SE_object.Rda")
+library(SummarizedExperiment)
+ls()
+```
+Y procedemos a la visualización de los metadatos almacenados:
+
+```{r}
+head(colData(se_object))
+```
+En este caso, el dataset es simple puesto que los metadatos solo asocian a cada paciente con su estado, pero en otros casos, los metadatos pueden ser más complejos y contener información adicional sobre las muestras, como edad, sexo, tratamiento, etc.
+
+
+
